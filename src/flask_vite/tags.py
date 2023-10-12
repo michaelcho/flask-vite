@@ -1,6 +1,7 @@
 from typing import Optional
 import glob
 from textwrap import dedent
+from pathlib import Path
 
 from flask import current_app
 
@@ -35,11 +36,16 @@ def make_static_tag(entry_point: Optional[str]):
 
 
 def make_debug_tag(entry_point: Optional[str]):
+    filename = entry_point or 'main'
+    js_file = f"{filename}.js"
+    if Path(f"vite/{filename}.jsx").exists():
+        js_file = f"{filename}.jsx"
+
     return dedent(
         f"""
             <!-- FLASK_VITE_HEADER -->
             <script type="module" src="http://localhost:3000/@vite/client"></script>
-            <script type="module" src="http://localhost:3000/{entry_point or 'main'}.js"></script>
+            <script type="module" src="http://localhost:3000/{js_file}"></script>
         """
     ).strip()
 
