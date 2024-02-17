@@ -37,7 +37,7 @@ class Vite:
         npm_bin_path = config.get("VITE_NPM_BIN_PATH", "npm")
         self.npm = NPM(cwd=str(self._get_root()), npm_bin_path=npm_bin_path)
 
-        app.route("/_vite/<path:filename>")(self.vite_static)
+        # app.route("/_vite/<path:filename>")(self.vite_static)
         app.template_global("vite_tags")(make_tag)
 
     def after_request(self, response: Response):
