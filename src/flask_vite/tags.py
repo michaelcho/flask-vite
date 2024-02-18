@@ -33,7 +33,7 @@ def make_static_tag(entry_point: Optional[str]):
     if js_file:
         tags += dedent(
             f"""
-                <script type="module" src="/assets/js/{_get_filename(js_file)}"></script>
+                <script defer type="module" src="/assets/js/{_get_filename(js_file)}"></script>
             """
         )
 
