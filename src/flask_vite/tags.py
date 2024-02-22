@@ -15,8 +15,8 @@ def make_tag(static: bool = False, entry_point: Optional[str] = None):
 
 def make_static_tag(entry_point: Optional[str]):
     js_file = css_file = None
-    js_files = glob.glob("static/assets/js/*.js")
-    css_files = glob.glob("static/assets/css/*.css")
+    js_files = glob.glob("vite/dist/assets/*.js")
+    css_files = glob.glob("vite/dist/assets/*.css")
 
     if css_files:
         css_file = css_files[0]
@@ -33,12 +33,12 @@ def make_static_tag(entry_point: Optional[str]):
     if js_file:
         tags += dedent(
             f"""
-                <script defer type="module" src="/assets/js/{_get_filename(js_file)}"></script>
+                <script defer type="module" src="/_vite/{_get_filename(js_file)}"></script>
             """
         )
 
     if css_file:
-        tags += f'<link rel="stylesheet" href="/assets/css/{_get_filename(css_file)}"></link>'
+        tags += f'<link rel="stylesheet" href="/_vite/{_get_filename(css_file)}"></link>'
 
     return tags.strip()
 
