@@ -39,7 +39,7 @@ def make_static_tag(entry_point: Optional[str]):
         )
 
     if css_file:
-        tags += f'<link rel="stylesheet" href="/_vite/{_get_filename(css_file)}"></link>'
+        tags += f'<link rel="stylesheet" href="/_vite/assets/{_get_filename(css_file)}"></link>'
 
     return tags.strip()
 
