@@ -47,8 +47,12 @@ def make_static_tag(entry_point: Optional[str]):
 def make_debug_tag(entry_point: Optional[str]):
     filename = entry_point or 'main'
     js_file = f"{filename}.js"
+
     if Path(f"vite/{filename}.jsx").exists():
         js_file = f"{filename}.jsx"
+
+    elif Path(f"vite/entrypoints/admin/{filename}.jsx").exists():
+        js_file = f"entrypoints/admin/{filename}.jsx"
 
     return dedent(
         f"""
