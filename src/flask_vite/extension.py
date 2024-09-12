@@ -59,7 +59,7 @@ class Vite:
         return response
 
     def vite_static(self, filename):
-        dist = str(self._get_root() / "dist" / "assets")
+        dist = str(self._get_root() / "dist" / "js")
         return send_from_directory(dist, filename, max_age=ONE_YEAR)
 
     def _get_root(self) -> Path:

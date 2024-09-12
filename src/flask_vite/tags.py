@@ -15,8 +15,9 @@ def make_tag(static: bool = False, entry_point: Optional[str] = None):
 
 def make_static_tag(entry_point: Optional[str]):
     js_file = css_file = None
-    js_files = glob.glob("vite/dist/assets/*.js")
-    css_files = glob.glob("vite/dist/assets/*.css")
+
+    js_files = glob.glob("vite/dist/js/*.js")
+    css_files = glob.glob("vite/dist/js/assets/*.css")
 
     if css_files:
         css_file = css_files[0]
