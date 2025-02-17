@@ -51,11 +51,11 @@ def make_debug_tag(entry_point: Optional[str]):
     if Path(f"vite/{filename}.jsx").exists():
         js_file = f"{filename}.jsx"
 
-    elif Path(f"vite/entrypoints/admin/{filename}.jsx").exists():
-        js_file = f"entrypoints/admin/{filename}.jsx"
-
     elif Path(f"vite/entrypoints/sites/{filename}.jsx").exists():
         js_file = f"entrypoints/sites/{filename}.jsx"
+
+    elif Path(f"vite/entrypoints/admin/{filename}.jsx").exists():
+        js_file = f"entrypoints/admin/{filename}.jsx"        
 
     return dedent(
         f"""
