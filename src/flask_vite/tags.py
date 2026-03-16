@@ -45,16 +45,22 @@ def make_static_tag(entry_point: Optional[str]):
 
 def make_debug_tag(entry_point: Optional[str]):
     filename = entry_point or 'main'
+
+    search_dirs = [
+        "vite",
+        "vite/entrypoints/admin",
+        "vite/entrypoints/frontend",
+        "app/vite/entrypoints/admin",
+        "app/vite/entrypoints/frontend",
+    ]
+
     js_file = f"{filename}.js"
-
-    if Path(f"vite/{filename}.jsx").exists():
-        js_file = f"{filename}.jsx"
-
-    elif Path(f"vite/entrypoints/admin/{filename}.jsx").exists():
-        js_file = f"entrypoints/admin/{filename}.jsx"
-
-    elif Path(f"vite/entrypoints/frontend/{filename}.jsx").exists():
-        js_file = f"entrypoints/frontend/{filename}.jsx"
+    for directory in search_dirs:
+        fs_path = f"{directory}/{filename}.jsx"
+        if Path(fs_path).exists():
+            vite_root = "app/vite" if directory.startswith("app/vite") else "vite"
+            js_file = fs_path[len(vite_root) + 1:]
+            break
 
     return dedent(
         f"""
