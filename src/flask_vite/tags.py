@@ -15,8 +15,8 @@ def make_tag(static: bool = False, entry_point: Optional[str] = None):
 
 def make_static_tag(entry_point: Optional[str]):
     js_file = css_file = None
-    js_files = glob.glob("static/assets/js/*.js")
-    css_files = glob.glob("static/assets/css/*.css")
+    js_files = glob.glob("static/assets/js/*.js") or glob.glob("app/static/assets/js/*.js")
+    css_files = glob.glob("static/assets/css/*.css") or glob.glob("app/static/assets/css/*.css")
 
     if css_files:
         css_file = css_files[0]
